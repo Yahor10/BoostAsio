@@ -17,6 +17,10 @@ utility
 -
 vector
 -
+boost/bind.hpp
+-
+boost/thread/thread.hpp
+/home/ychabatarou/Downloads/TestBoost/boost/thread/thread.hpp
 server.h
 /home/ychabatarou/Downloads/TestBoost/server.h
 

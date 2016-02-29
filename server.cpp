@@ -21,9 +21,6 @@ void server::accept_hander(const boost::system::error_code& err)
 
 	_socket.async_read_some(boost::asio::buffer(buff,1024),boost::bind(&server::read_hander,this,boost::asio::placeholders::error,
 				boost::asio::placeholders::bytes_transferred));
-
-
-
 	acceptor.async_accept(_socket,boost::bind(&server::accept_hander,this,boost::asio::placeholders::error));
 
 	}

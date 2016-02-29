@@ -14,14 +14,23 @@
 #include <utility>
 #include <vector>
 
+#include <boost/bind.hpp>
+#include "boost/thread/thread.hpp"
 #include "server.h"
+
+
+void f(){   
+	boost::asio::io_service service;
+	server  myserver(service,3030);
+	service.run();
+}
+
+
 
 int main(int argc, char* argv[])
 {
+	boost::thread_group d;;
+	d.create_thread(f);
+	d.join_all();
 
-    boost::asio::io_service service;
-	server  myserver(service,3030);
-	service.run();
-
-    return 0;
 }

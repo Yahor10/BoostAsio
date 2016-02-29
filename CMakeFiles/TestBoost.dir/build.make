@@ -144,6 +144,7 @@ TestBoost: CMakeFiles/TestBoost.dir/session.cpp.o
 TestBoost: CMakeFiles/TestBoost.dir/build.make
 TestBoost: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 TestBoost: /usr/lib/x86_64-linux-gnu/libboost_system.so
+TestBoost: /usr/lib/x86_64-linux-gnu/libboost_thread.so
 TestBoost: CMakeFiles/TestBoost.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ychabatarou/Downloads/TestBoost/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable TestBoost"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TestBoost.dir/link.txt --verbose=$(VERBOSE)
