@@ -10,18 +10,19 @@ server::server(boost::asio::io_service& io_s,short port):acceptor(io_s,tcp::endp
 
 	printf("start run server\n");
 	session::pointer new_connection =
-		session::create(io_s);
-
+		session::create(acceptor.get_io_service());
 	acceptor.async_accept(new_connection->new_socket(),boost::bind(&server::accept_hander,this,boost::asio::placeholders::error));
 }
 
 void server::accept_hander(const boost::system::error_code& err)
 {
-	if(!err){
+	if(!err)
+	{
 	printf("accept hander\n");
 	session::pointer new_connection = session::create(acceptor.get_io_service());	
 	acceptor.async_accept(new_connection->new_socket(),boost::bind(&server::accept_hander,this,boost::asio::placeholders::error));
-
+	}else{
+		printf("handle err");
 	}
 }
 

@@ -16,12 +16,12 @@
 
 
 class session :public boost::enable_shared_from_this<session> {
-    char array[2056];
 
 	public:
 	typedef boost::shared_ptr<session> pointer;
 
 	static pointer create(boost::asio::io_service& io_service){
+		printf("create pointer");
 		return pointer(new session(io_service));
 	}
 
