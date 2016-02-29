@@ -3,9 +3,11 @@
 
 CMakeFiles/TestBoost.dir/main.cpp.o: main.cpp
 CMakeFiles/TestBoost.dir/main.cpp.o: server.h
+CMakeFiles/TestBoost.dir/main.cpp.o: session.h
 
 CMakeFiles/TestBoost.dir/server.cpp.o: server.cpp
 CMakeFiles/TestBoost.dir/server.cpp.o: server.h
+CMakeFiles/TestBoost.dir/server.cpp.o: session.h
 
 CMakeFiles/TestBoost.dir/session.cpp.o: session.cpp
 CMakeFiles/TestBoost.dir/session.cpp.o: session.h

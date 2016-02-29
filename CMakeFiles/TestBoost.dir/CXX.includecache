@@ -43,10 +43,28 @@ utility
 -
 boost/asio.hpp
 -
+session.h
+/home/ychabatarou/Downloads/TestBoost/session.h
 
 /home/ychabatarou/Downloads/TestBoost/session.cpp
 session.h
 /home/ychabatarou/Downloads/TestBoost/session.h
 
 /home/ychabatarou/Downloads/TestBoost/session.h
+boost/asio.hpp
+-
+iostream
+-
+memory
+-
+utility
+-
+vector
+-
+boost/bind.hpp
+-
+boost/enable_shared_from_this.hpp
+-
+boost/shared_ptr.hpp
+-
 

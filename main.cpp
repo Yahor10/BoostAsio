@@ -26,11 +26,8 @@ void f(){
 }
 
 
-
 int main(int argc, char* argv[])
 {
-	boost::thread_group d;;
-	d.create_thread(f);
-	d.join_all();
-
+	f();
+	return 0;
 }

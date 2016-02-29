@@ -6,6 +6,7 @@
 #include <memory>
 #include <utility>
 #include <boost/asio.hpp>
+#include "session.h"
 
 using boost::asio::ip::tcp;
 
@@ -16,7 +17,6 @@ using boost::asio::ip::tcp;
 class server {
 
 	tcp::acceptor acceptor;
-	tcp::socket _socket;
 
 	std::vector<char>buff;
 	public:
@@ -26,6 +26,8 @@ class server {
 	void accept_hander(const boost::system::error_code& err);
 
 	void read_hander(const boost::system::error_code& err,std::size_t bytes);
+
+
 };
 
 
