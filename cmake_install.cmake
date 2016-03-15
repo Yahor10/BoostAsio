@@ -1,4 +1,4 @@
-# Install script for directory: /home/ychabatarou/Downloads/TestBoost
+# Install script for directory: /home/ychabatarou/Downloads/gitProjects/BoostAsio
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ychabatarou/Downloads/TestBoost/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ychabatarou/Downloads/gitProjects/BoostAsio/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

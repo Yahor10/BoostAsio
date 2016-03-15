@@ -4,12 +4,13 @@
 
 #include "session.h"
 
-session::session(boost::asio::io_service& service):_socket(service){
+void session::read_hander(const boost::system::error_code& err,std::size_t bytes){
+
+	if(!err){
+		std::string s(buff.begin(),buff.end());
+		printf("read  %s",s.c_str());
+	}else{
+		printf("error read");
+	}
 
 }
-
-boost::asio::ip::tcp::socket& session::new_socket(){
-	return _socket;
-}
-
-

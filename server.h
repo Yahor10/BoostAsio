@@ -1,4 +1,4 @@
-//
+
 // Created by ychabatarou on 29.2.16.
 //
 #include <cstdlib>
@@ -23,11 +23,11 @@ class server {
 	server(boost::asio::io_service& io_s,short port);
 
 	private:
-	void accept_hander(const boost::system::error_code& err);
+	void accept_hander(session* s,const boost::system::error_code& err);
 
 	void read_hander(const boost::system::error_code& err,std::size_t bytes);
 
-
+	
 };
 
 
