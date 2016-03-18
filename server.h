@@ -27,7 +27,7 @@ class server {
 
 	void read_hander(const boost::system::error_code& err,std::size_t bytes);
 
-	
+	void f();
 };
 
 

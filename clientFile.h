@@ -39,9 +39,8 @@ class clientFile {
 
 		template<class Archive>
 	    void serialize(Archive & ar, const unsigned int /* file_version */){
-			printf("invoke serialize");
 			        ar & message;
-					    }
+		}
 
 	  friend std::ostream & operator<<(std::ostream &os, const clientFile &cf);
 	    std::string message;

@@ -5,33 +5,23 @@
 #include "session.h"
 #include "clientFile.h"
 #include "serialize_manager.h"
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/tmpdir.hpp>
-
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/text_oarchive.hpp>
-
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/utility.hpp>
-#include <boost/serialization/list.hpp>
-#include <boost/serialization/assume_abstract.hpp>
 
 
 void session::read_hander(const boost::system::error_code& err,std::size_t bytes){
 
 	if(!err){
+
+		session_count++;
+		printf("start session %d \n",session_count);
+
 		std::string s(buff.begin(),buff.end());
-		const clientFile f(s);
 
-		serialize_manager manager;
+		// TODO log all data
+		log1->log_simple_message(s);
 
-		std::string filename(boost::archive::tmpdir());
-		filename += "/demofile.txt";
 
-		manager.save_client_file(f,filename.c_str());
+		_socket.async_read_some(boost::asio::buffer(buff,512),boost::bind(&session::read_hander,this,error,bytes_transferred));
 
-		printf("read  %s",s.c_str());
 
 	}else{
 		printf("error read");
