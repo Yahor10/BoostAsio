@@ -29,7 +29,7 @@ class session :public boost::enable_shared_from_this<session> {
 
 
 	public:
-		session(boost::asio::io_service& io_service):_socket(io_service),buff(4){
+		session(boost::asio::io_service& io_service):_socket(io_service),buff(128){
 
 		}
 
@@ -47,16 +47,21 @@ class session :public boost::enable_shared_from_this<session> {
 
 			  void start()
 			  {
-
-
-				  _socket.async_read_some(boost::asio::buffer(buff,4),boost::bind(&session::read_hander,this,error,bytes_transferred));
-
+				  _socket.async_read_some(boost::asio::buffer(buff,128),boost::bind(&session::read_hander,this,error,bytes_transferred));
 			  }
 
 	private:
 		tcp::socket _socket;
 		std::vector<unsigned  char>buff;
 void read_hander(const boost::system::error_code& err,std::size_t bytes);
+	void write_handler(
+			const boost::system::error_code& error, // Result of operation.
+
+			std::size_t bytes_transferred           // Number of bytes written from the
+			// buffers. If an error occurred,
+			// this will be less than the sum
+			// of the buffer sizes.
+	);
 
 };
 

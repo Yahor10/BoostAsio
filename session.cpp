@@ -36,19 +36,38 @@ void session::read_hander(const boost::system::error_code& err,std::size_t bytes
 
 //		std::string byteArray(buff.begin(),buff.end());
 
-		    unsigned long int anotherLongInt = 0;
-    	anotherLongInt  = ((unsigned int) buff[0]) << 24;
-		anotherLongInt |= ((unsigned int) buff[1]) << 16;
-		anotherLongInt |= ((unsigned int) buff[2]) << 8;
-    	anotherLongInt |= ((unsigned int) buff[3]);
+		    unsigned long int timeStamp,hash = 0;
+		timeStamp  = ((unsigned int) buff[0]) << 24;
+		timeStamp |= ((unsigned int) buff[1]) << 16;
+		timeStamp |= ((unsigned int) buff[2]) << 8;
+		timeStamp |= ((unsigned int) buff[3]);
 
-		
-		_socket.async_read_some(boost::asio::buffer(buff,4),boost::bind(&session::read_hander,this,error,bytes_transferred));
+		hash  = ((unsigned int) buff[4]) << 24;
+		hash |= ((unsigned int) buff[5]) << 16;
+		hash |= ((unsigned int) buff[6]) << 8;
+		hash |= ((unsigned int) buff[7]);
+
+
+		printf("timeStamp : %ud\n" ,timeStamp);
+		printf("hash : %ud\n" ,hash);
+
+		printf("write start \n");
+		std::string t = "message from first client";
+//		boost::asio::async_write(_socket, boost::asio::buffer(t, t.length()), boost::bind(&session::write_handler,this,error,bytes_transferred));
+		boost::asio::write(_socket,boost::asio::buffer(t, t.length()));
+		printf("write finish\n");
+
+		_socket.async_read_some(boost::asio::buffer(buff,bytes),boost::bind(&session::read_hander,this,error,bytes_transferred));
+
 
 
 	}else{
 		printf("read error %s \n ",err.message().c_str());
 		printf("read error %d \n ",err.value());
 	}
+}
+
+void session::write_handler(const boost::system::error_code &error, std::size_t bytes_transferred) {
+	printf("write handler\n");
 
 }
