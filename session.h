@@ -14,7 +14,6 @@
 #include <boost/bind.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/shared_ptr.hpp>
-#include "logging/logger.h"
 
 #ifndef TESTBOOST_SESSION_H
 #define TESTBOOST_SESSION_H
@@ -30,7 +29,7 @@ class session :public boost::enable_shared_from_this<session> {
 
 
 	public:
-		session(boost::asio::io_service& io_service):_socket(io_service),buff(512){
+		session(boost::asio::io_service& io_service):_socket(io_service),buff(4){
 
 		}
 
@@ -50,15 +49,14 @@ class session :public boost::enable_shared_from_this<session> {
 			  {
 
 
-				  _socket.async_read_some(boost::asio::buffer(buff,512),boost::bind(&session::read_hander,this,error,bytes_transferred));
+				  _socket.async_read_some(boost::asio::buffer(buff,4),boost::bind(&session::read_hander,this,error,bytes_transferred));
 
 			  }
 
 	private:
 		tcp::socket _socket;
-		std::vector<char>buff;
+		std::vector<unsigned  char>buff;
 void read_hander(const boost::system::error_code& err,std::size_t bytes);
-	logger* log1 = new logger();
 
 };
 
