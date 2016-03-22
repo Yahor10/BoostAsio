@@ -14,20 +14,23 @@ using boost::asio::ip::tcp;
 #define TESTBOOST_SERVER_H
 
 
-class server {
+class tcp_server_node{
 
 	tcp::acceptor acceptor;
 
 	std::vector<char>buff;
-	public:
-	server(boost::asio::io_service& io_s,short port);
 
+	int _node_port;
+
+	public:
+	tcp_server_node(boost::asio::io_service& io_s, short port);
+
+	void startAsync();
 	private:
 	void accept_hander(session* s,const boost::system::error_code& err);
 
 	void read_hander(const boost::system::error_code& err,std::size_t bytes);
-
-	void f();
+	session* s;
 };
 
 

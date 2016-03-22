@@ -15,19 +15,22 @@
 #include <vector>
 
 #include <boost/bind.hpp>
-#include "boost/thread/thread.hpp"
-#include "server.h"
+#include "boost/thread.hpp"
+#include "tcp_server_node.h"
+#include "tcp_server.h"
 
 
 void f(){   
-	boost::asio::io_service service;
-	server  myserver(service,3030);
-	service.run();
+
 }
 
 
 int main(int argc, char* argv[])
 {
-	f();
+	tcp_server server;
+	server.createNode(3030);
+	server.createNode(3031);
+	server.startService();
+
 	return 0;
 }

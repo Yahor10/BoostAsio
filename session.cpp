@@ -30,9 +30,7 @@
 void session::read_hander(const boost::system::error_code& err,std::size_t bytes){
 
 	if(!err){
-
-		session_count++;
-		printf("The size of a is " JL_SIZE_T_SPECIFIER " bytes", bytes);
+		printf("The size of a message is " JL_SIZE_T_SPECIFIER " bytes", bytes);
 
 //		std::string byteArray(buff.begin(),buff.end());
 
@@ -51,16 +49,9 @@ void session::read_hander(const boost::system::error_code& err,std::size_t bytes
 		printf("timeStamp : %ud\n" ,timeStamp);
 		printf("hash : %ud\n" ,hash);
 
-		printf("write start \n");
-		std::string t = "message from first client";
-//		boost::asio::async_write(_socket, boost::asio::buffer(t, t.length()), boost::bind(&session::write_handler,this,error,bytes_transferred));
+		std::string t = "answer from server";
 		boost::asio::write(_socket,boost::asio::buffer(t, t.length()));
-		printf("write finish\n");
-
 		_socket.async_read_some(boost::asio::buffer(buff,bytes),boost::bind(&session::read_hander,this,error,bytes_transferred));
-
-
-
 	}else{
 		printf("read error %s \n ",err.message().c_str());
 		printf("read error %d \n ",err.value());
